@@ -8,6 +8,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   bool _isObscure = true;
+  String? selectedGender;
 
   void _toggleObscure() {
     setState(() {
@@ -39,13 +40,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 0,
                       blurRadius: 10,
-                      offset: Offset(0, 10), // Offset 20 ke bawah
+                      offset: Offset(0, 10),
                     ),
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 0,
                       blurRadius: 10,
-                      offset: Offset(5, 0), // Offset 10 ke kanan
+                      offset: Offset(5, 0),
                     ),
                   ],
                 ),
@@ -56,13 +57,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       _buildFormTextField(
                         labelText: 'Enter your name',
                         prefixIcon: Icons.person,
-                        keyboardType: TextInputType.text
+                        keyboardType: TextInputType.text,
                       ),
                       SizedBox(height: 20),
                       _buildFormTextField(
                         labelText: 'Enter your e-mail',
                         prefixIcon: Icons.email,
-                        keyboardType: TextInputType.emailAddress
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       SizedBox(height: 20),
                       _buildFormTextField(
@@ -70,6 +71,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         prefixIcon: Icons.phone,
                         keyboardType: TextInputType.phone,
                       ),
+                      SizedBox(height: 20),
+                      _buildGenderDropdown(),
                       SizedBox(height: 20),
                       _buildPasswordField(),
                       SizedBox(height: 20),
@@ -127,6 +130,40 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  Widget _buildGenderDropdown() {
+    return DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+        labelText: 'Select Gender',
+        prefixIcon: Icon(Icons.person_outline, color: Colors.grey),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.blue),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.blue),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.grey.shade300),
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      ),
+      value: selectedGender,
+      items: ['Laki-laki', 'Perempuan']
+          .map((gender) => DropdownMenuItem(
+                value: gender,
+                child: Text(gender),
+              ))
+          .toList(),
+      onChanged: (value) {
+        setState(() {
+          selectedGender = value;
+        });
+      },
+    );
+  }
+
   Widget _buildPasswordField() {
     return TextFormField(
       obscureText: _isObscure,
@@ -138,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
           icon: Icon(
             _isObscure ? Icons.visibility : Icons.visibility_off,
             color: Colors.grey,
-            size: 20, // Ukuran ikon disesuaikan di sini
+            size: 20,
           ),
         ),
         border: OutlineInputBorder(
@@ -169,7 +206,7 @@ class _RegisterPageState extends State<RegisterPage> {
           icon: Icon(
             _isObscure ? Icons.visibility : Icons.visibility_off,
             color: Colors.grey,
-            size: 20, // Ukuran ikon disesuaikan di sini
+            size: 20,
           ),
         ),
         border: OutlineInputBorder(
@@ -193,7 +230,9 @@ class _RegisterPageState extends State<RegisterPage> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          // Implementasi aksi register
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blue.shade800,
           minimumSize: Size(double.infinity, 50),

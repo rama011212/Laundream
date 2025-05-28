@@ -49,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
         elevation: 0,
         backgroundColor: const Color(0xFFF9FAFB),
         surfaceTintColor: const Color(0xFFF9FAFB),
-        automaticallyImplyLeading: false, // <-- ini penting!
+        automaticallyImplyLeading: false, 
         centerTitle: true,
         title: const Text(
           "My Profile",

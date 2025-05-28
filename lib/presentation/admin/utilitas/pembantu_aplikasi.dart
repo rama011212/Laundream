@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:laundream/presentation/admin/utilitas/konstanta_aplikasi.dart'; // Import KonstantaAplikasi
+import 'package:laundream/presentation/admin/utilitas/konstanta_aplikasi.dart';
 
 class PembantuAplikasi {
   static String dapatkanSatuan(String jenis) {
@@ -43,7 +43,7 @@ class PembantuAplikasi {
         }
       }
     }
-    return 0; // Atau lempar error jika tidak ditemukan
+    return 0;
   }
 
   // Fungsi baru: Hitung harga akhir dengan promo

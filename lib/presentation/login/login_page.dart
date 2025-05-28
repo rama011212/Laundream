@@ -53,9 +53,9 @@ class _LoginPageState extends State<LoginPage> {
                       // Logo
                       ColorFiltered(
                         colorFilter: ColorFilter.mode(Colors.blue.shade800, BlendMode.srcIn),
-                        child: Image.asset('images/icon/logo.png', height: 100), // Adjust height as needed
+                        child: Image.asset('images/icon/logo.png', height: 100), 
                       ),
-                      SizedBox(height: 0), // Space between logo and text
+                      SizedBox(height: 0),
 
                       // Teks “Laundream” di dalam card
                       Text(

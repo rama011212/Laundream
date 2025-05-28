@@ -84,12 +84,11 @@ class _DialogEditPesananState extends State<DialogEditPesanan> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
       ),
-      // PERUBAHAN DI SINI: Bungkus dengan SingleChildScrollView
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
           child: Column(
-            mainAxisSize: MainAxisSize.min, // Penting agar Column tidak mengambil ruang lebih dari yang diperlukan
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(

@@ -35,7 +35,7 @@ class ProfilUsahaPage extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    'images/profil_outlet.png', // Ganti dengan logo kamu
+                    'images/profil_outlet.png',
                     width: 200,
                     height: 200,
                   ),

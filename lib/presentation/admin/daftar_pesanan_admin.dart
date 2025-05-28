@@ -3,7 +3,7 @@ import 'package:laundream/presentation/admin/utilitas/konstanta_aplikasi.dart';
 import 'package:laundream/presentation/admin/widget/lembar_detail_pesanan.dart';
 import 'package:laundream/presentation/admin/widget/item_daftar_pesanan.dart';
 import 'package:laundream/presentation/admin/widget/lembar_ganti_status.dart';
-import 'package:laundream/presentation/admin/dialog/dialog_hapus_pesanan.dart'; // PASTIKAN ini diimport
+import 'package:laundream/presentation/admin/dialog/dialog_hapus_pesanan.dart';
 
 class DaftarPesananAdmin extends StatefulWidget {
   const DaftarPesananAdmin({super.key});
@@ -18,8 +18,8 @@ class _DaftarPesananAdminState extends State<DaftarPesananAdmin> {
   String pencarianQuery = '';
 
   // Gunakan List<Map<String, dynamic>> pesanan = KonstantaAplikasi.dataPesananDummy;
-  // Jika Anda ingin data yang bisa diubah, gunakan List yang bisa di-modifikasi.
-  // Untuk tujuan demo ini, kita akan membuat salinan yang bisa diubah:
+  // Jika ingin data yang bisa diubah, gunakan List yang bisa di-modifikasi.
+  // Untuk tujuan demo ini, bisa akan membuat salinan yang bisa diubah:
   final List<Map<String, dynamic>> _pesanan = KonstantaAplikasi.dataPesananDummy.toList();
 
 

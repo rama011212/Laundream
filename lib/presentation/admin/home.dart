@@ -202,8 +202,6 @@ class HomeContent extends StatelessWidget {
                     context, LayananPage()),
                 _buildFeatureTile('Transaksi', Icons.receipt_long, context,
                     TransaksiPage()),
-                // Hapus bagian Promosi
-                // _buildFeatureTile('Promosi', Icons.card_giftcard, context, PromosiPage()),
               ],
             ),
           ),

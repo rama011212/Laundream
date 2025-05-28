@@ -73,14 +73,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
         foregroundColor: Colors.black,
         elevation: 0,
         centerTitle: true,
-        automaticallyImplyLeading: false, // Hapus icon kembali
+        automaticallyImplyLeading: true, 
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         child: Column(
           children: [
             const SizedBox(height: 8),
-            // Foto profil diperbesar
             const CircleAvatar(
               radius: 70,
               backgroundImage: AssetImage('images/profil.jpg'),

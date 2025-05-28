@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laundream/presentation/admin/home.dart';
 import 'package:laundream/presentation/home/promo_notification.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:laundream/presentation/login/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding

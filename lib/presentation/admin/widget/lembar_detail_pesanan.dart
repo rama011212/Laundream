@@ -7,12 +7,12 @@ class LembarDetailPesanan extends StatelessWidget {
     super.key,
     required this.pesanan,
     required this.onGantiPembayaran,
-    required this.onHapusPesanan, // Parameter ini masih bisa dipertahankan, atau dihilangkan jika tidak ada lagi fungsi Hapus yang dipanggil dari sini. Untuk amannya, kita pertahankan dulu.
+    required this.onHapusPesanan,
   });
 
   final Map<String, dynamic> pesanan;
   final Function(Map<String, dynamic>) onGantiPembayaran;
-  final VoidCallback onHapusPesanan; // Ini juga bisa dihapus jika tidak ada lagi kebutuhan untuk memanggilnya dari sini
+  final VoidCallback onHapusPesanan;
 
   Widget _barisDetail(String label, String nilai) => Padding(
         padding: const EdgeInsets.only(bottom: 12),
@@ -88,13 +88,13 @@ class LembarDetailPesanan extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           // HANYA TOMBOL EDIT YANG TERSISA
-          Align( // Menggunakan Align untuk menempatkan tombol di tengah atau kiri jika hanya ada satu
-            alignment: Alignment.center, // Atau Alignment.centerLeft jika ingin di kiri
-            child: SizedBox( // Memastikan tombol mengambil lebar penuh jika hanya satu
-              width: double.infinity, // Membuat tombol mengisi lebar yang tersedia
+          Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: double.infinity,
               child: OutlinedButton.icon(
                 onPressed: () async {
-                  Navigator.pop(context); // Tutup lembar saat ini
+                  Navigator.pop(context);
                   await showDialog(
                     context: context,
                     builder: (ctx) => DialogEditPesanan(pesanan: pesanan),
