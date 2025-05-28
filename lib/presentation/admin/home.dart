@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:laundryku/presentation/admin/diskon.dart';
-import 'package:laundryku/presentation/admin/laporan.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:laundryku/presentation/admin/layanan.dart';
-import 'package:laundryku/presentation/admin/pelanggan.dart';
-import 'package:laundryku/presentation/admin/pesanan.dart';
-import 'package:laundryku/presentation/admin/transaksi.dart';
+import 'package:laundream/presentation/admin/laporan.dart';
+import 'package:laundream/presentation/admin/promosi.dart';
+import 'package:laundream/presentation/home/home_screen.dart';
+import 'package:laundream/presentation/admin/layanan.dart';
+import 'package:laundream/presentation/admin/pelanggan.dart';
+import 'package:laundream/presentation/admin/daftar_pesanan_admin.dart';
+import 'package:laundream/presentation/admin/transaksi.dart';
+import 'package:laundream/presentation/admin/profil_admin.dart';
 
 class HomeAdmin extends StatefulWidget {
   @override
@@ -17,10 +19,9 @@ class _HomeAdminState extends State<HomeAdmin> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
     HomeContent(),
-    DiskonPage(),
+    PromosiPage(),
     LaporanPage(),
-    // LaporanPage(),
-    // AkunPage(),
+    ProfilAdminPage(),
   ];
 
   void _onTabSelected(int index) {
@@ -59,7 +60,7 @@ class _HomeAdminState extends State<HomeAdmin> {
                 ),
                 GButton(
                   icon: LineIcons.tag,
-                  text: 'Diskon',
+                  text: 'Promo',
                   onPressed: () => _onTabSelected(1),
                 ),
                 GButton(
@@ -114,7 +115,12 @@ class HomeContent extends StatelessWidget {
                 ),
                 child: IconButton(
                   icon: Icon(Icons.notifications, color: Colors.white),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeUser()),
+                    );
+                  },
                 ),
               ),
             ],
@@ -134,11 +140,13 @@ class HomeContent extends StatelessWidget {
                   children: [
                     Text(
                       'Pendapatan Hari Ini',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: [
-                        Icon(Icons.arrow_downward, color: Colors.green, size: 18),
+                        Icon(Icons.arrow_downward,
+                            color: Colors.green, size: 18),
                         SizedBox(width: 5),
                         Text(
                           'Rp 0',
@@ -153,7 +161,8 @@ class HomeContent extends StatelessWidget {
                   children: [
                     Text(
                       'Pengeluaran Hari Ini',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: [
@@ -185,10 +194,14 @@ class HomeContent extends StatelessWidget {
               crossAxisSpacing: 40,
               mainAxisSpacing: 40,
               children: [
-                _buildFeatureTile('Pesanan', Icons.list_alt_outlined, context, OrdersScreen()),
-                _buildFeatureTile('Pelanggan', Icons.person, context, PelangganPage()),
-                _buildFeatureTile('Layanan', Icons.local_laundry_service, context, LayananPage()),
-                _buildFeatureTile('Transaksi', Icons.monetization_on, context, TransaksiPage()),
+                _buildFeatureTile('Pesanan', Icons.list_alt_outlined, context,
+                    DaftarPesananAdmin()),
+                _buildFeatureTile(
+                    'Pelanggan', Icons.person, context, PelangganPage()),
+                _buildFeatureTile('Layanan', Icons.local_laundry_service,
+                    context, LayananPage()),
+                _buildFeatureTile('Transaksi', Icons.receipt_long, context,
+                    TransaksiPage()),
                 // Hapus bagian Promosi
                 // _buildFeatureTile('Promosi', Icons.card_giftcard, context, PromosiPage()),
               ],
@@ -199,9 +212,11 @@ class HomeContent extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureTile(String title, IconData icon, BuildContext context, Widget destination) {
+  Widget _buildFeatureTile(
+      String title, IconData icon, BuildContext context, Widget destination) {
     return GestureDetector(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => destination)),
+      onTap: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => destination)),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -211,7 +226,7 @@ class HomeContent extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 50, color:Color(0xFF0E1446)),
+            Icon(icon, size: 50, color: Color(0xFF0E1446)),
             SizedBox(height: 10),
             Text(title, style: TextStyle(fontSize: 18)),
           ],

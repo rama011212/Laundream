@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:intl/intl.dart';
-import 'package:laundryku/presentation/home/rincian_pesanan.dart';
-
-
-
-
+import 'package:laundream/presentation/home/rincian_pesanan.dart';
 
 class PesanLaundryPage extends StatefulWidget {
   const PesanLaundryPage({Key? key}) : super(key: key);

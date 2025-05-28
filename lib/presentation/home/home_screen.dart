@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:laundryku/presentation/home/pesan_laundry.dart';
-import 'package:laundryku/presentation/home/profil_page.dart';
-import 'package:laundryku/presentation/home/profil_usaha.dart';
-import 'package:laundryku/presentation/home/status_pesanan.dart';
-import 'package:laundryku/presentation/home/riwayat_pesanan.dart';
-import 'package:laundryku/presentation/home/voucher_saya.dart';
-import 'package:laundryku/presentation/home/promo_notification.dart';
-import 'package:laundryku/presentation/admin/home.dart';
+import 'package:laundream/presentation/home/pesan_laundry.dart';
+import 'package:laundream/presentation/home/profil_page.dart';
+import 'package:laundream/presentation/home/profil_usaha.dart';
+import 'package:laundream/presentation/home/status_pesanan.dart';
+import 'package:laundream/presentation/home/riwayat_pesanan.dart';
+import 'package:laundream/presentation/home/voucher_saya.dart';
+import 'package:laundream/presentation/home/promo_notification.dart';
+import 'package:laundream/presentation/admin/home.dart';
 
 class HomeUser extends StatefulWidget {
   @override

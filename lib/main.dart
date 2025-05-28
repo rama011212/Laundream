@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:laundryku/presentation/admin/diskon.dart';
-import 'package:laundryku/presentation/admin/home.dart';
-import 'package:laundryku/presentation/admin/layanan.dart';
-import 'package:laundryku/presentation/admin/laporan.dart';
-import 'package:laundryku/presentation/home/rincian_pesanan.dart';
-import 'package:laundryku/presentation/login/login_page.dart';
-import 'package:laundryku/presentation/registration/registration_page.dart';
-import 'package:laundryku/presentation/home/home_screen.dart';
-import 'package:laundryku/presentation/home/promo_notification.dart';
+import 'package:laundream/presentation/admin/home.dart';
+import 'package:laundream/presentation/home/promo_notification.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); // Penting agar plugin native bekerja
   await PromoNotificationService.init(); // Panggil inisialisasi notifikasi
+  await initializeDateFormatting(
+      'id_ID', null); // inisialisasi format tanggal Indonesia
   runApp(const MyApp());
 }
 
@@ -27,7 +23,16 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: 'Poppins',
-        textTheme: TextTheme(
+        dialogBackgroundColor:
+            Colors.white, // Paksa background dialog jadi putih
+        cardColor: Colors.white, // Jika pakai Card dalam dialog, ini juga bantu
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.white,
+          surface:
+              Colors.white, // (opsional) permukaan seperti dialog jadi putih
+        ),
+        useMaterial3: true,
+        textTheme: const TextTheme(
           displayLarge: TextStyle(fontFamily: 'Poppins'),
           displayMedium: TextStyle(fontFamily: 'Poppins'),
           displaySmall: TextStyle(fontFamily: 'Poppins'),
@@ -44,10 +49,8 @@ class MyApp extends StatelessWidget {
           labelMedium: TextStyle(fontFamily: 'Poppins'),
           labelSmall: TextStyle(fontFamily: 'Poppins'),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: HomeAdmin(),
     );
   }
 }

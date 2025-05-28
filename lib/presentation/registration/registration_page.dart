@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laundryku/presentation/login/login_page.dart';
+import 'package:laundream/presentation/login/login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   @override

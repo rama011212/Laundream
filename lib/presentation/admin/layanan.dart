@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:laundream/presentation/admin/tambah_layanan_screen.dart';
 
 class LayananPage extends StatefulWidget {
   @override
@@ -6,99 +9,106 @@ class LayananPage extends StatefulWidget {
 }
 
 class _LayananPageState extends State<LayananPage> {
-  final List<Map<String, String>> layanan = [
-    {'name': 'Cuci Setrika (Reguler)', 'price': 'Rp 5.000', 'category': 'KILOAN'},
-    {'name': 'Cuci Setrika (Ekspres)', 'price': 'Rp 7.000', 'category': 'KILOAN'},
-    {'name': 'Karpet (Reguler)', 'price': 'Rp 15.000', 'category': 'METERAN'},
-    {'name': 'Bed Cover Jumbo (Reguler)', 'price': 'Rp 30.000', 'category': 'SATUAN'},
-    {'name': 'Bed Cover Jumbo (Ekspres)', 'price': 'Rp 35.000', 'category': 'SATUAN'},
-    {'name': 'Bed Cover Single (Reguler)', 'price': 'Rp 10.000', 'category': 'SATUAN'},
-    {'name': 'Bed Cover Single (Ekspres)', 'price': 'Rp 15.000', 'category': 'SATUAN'},
-    {'name': 'Boneka Besar (Reguler)', 'price': 'Rp 20.000', 'category': 'SATUAN'},
-    {'name': 'Boneka Kecil (Reguler)', 'price': 'Rp 5.000', 'category': 'SATUAN'},
+  List<Map<String, dynamic>> layanan = [
+    {
+      'title': 'Cuci Setrika',
+      'satuan': 'kg',
+      'jenis': [
+        {'nama': 'Reguler', 'harga': 5000},
+        {'nama': 'Kilat', 'harga': 10000},
+      ]
+    },
+    {
+      'title': 'Setrika Saja',
+      'satuan': 'kg',
+      'jenis': [
+        {'nama': 'Reguler', 'harga': 2500},
+        {'nama': 'Kilat', 'harga': 5000},
+      ]
+    },
+    {
+      'title': 'Cuci Lipat',
+      'satuan': 'kg',
+      'jenis': [
+        {'nama': 'Reguler', 'harga': 3000},
+        {'nama': 'Kilat', 'harga': 6000},
+      ]
+    },
+    {
+      'title': 'Cuci Karpet',
+      'satuan': 'meter',
+      'jenis': [
+        {'nama': 'Permeter', 'harga': 10000},
+      ]
+    },
   ];
 
-  String searchQuery = '';
+  void _hapusLayanan(int index) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Hapus Layanan'),
+        content: Text('Apakah Anda yakin ingin menghapus layanan ini?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('Batal'),
+          ),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                layanan.removeAt(index);
+              });
+              Navigator.pop(context);
+            },
+            child: Text('Hapus', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final filteredLayanan = layanan.where((item) {
-      final nameLower = item['name']!.toLowerCase();
-      final queryLower = searchQuery.toLowerCase();
-      return nameLower.contains(queryLower);
-    }).toList();
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Layanan Kami'),
+        title: Text('Manajemen Layanan', style: GoogleFonts.poppins()),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Cari nama layanan',
-                            prefixIcon: Icon(Icons.search),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              searchQuery = value;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    RawMaterialButton(
-                      onPressed: () {
-                        // Tambahkan logika untuk menambahkan layanan baru
-                      },
-                      child: Icon(Icons.add, color: Colors.white), // Mengatur warna ikon menjadi putih
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      fillColor: Color(0xFF0E1446), // Warna biru tua
-                      constraints: BoxConstraints(
-                        minWidth: 70.0,
-                        minHeight: 40.0,
-                      ),
-                      elevation: 2.0,
-                    ),
-                  ],
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TambahLayananScreen()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF0E1446),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
-              ],
+                child: const Text(
+                  'Tambah Layanan',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+              ),
             ),
           ),
           Expanded(
-            child: ListView.separated(
-              padding: EdgeInsets.symmetric(vertical: 5.0), // Padding vertikal untuk daftar layanan
-              itemCount: filteredLayanan.length,
+            child: ListView.builder(
+              itemCount: layanan.length,
               itemBuilder: (context, index) {
-                return _buildLayananTile(
-                  filteredLayanan[index]['name']!,
-                  filteredLayanan[index]['price']!,
-                  filteredLayanan[index]['category']!,
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  color: Colors.grey,
-                  thickness: 0.0, // Sesuaikan ketebalan sesuai kebutuhan Anda
-                  indent: .0, // Tidak ada indentasi
-                  endIndent: .0, // Tidak ada indentasi
-                );
+                return buildLayananCard(layanan[index], index)
+                    .animate()
+                    .fadeIn(duration: 400.ms)
+                    .slideY(begin: 0.2);
               },
             ),
           ),
@@ -107,42 +117,82 @@ class _LayananPageState extends State<LayananPage> {
     );
   }
 
-  Widget _buildLayananTile(String title, String price, String category) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0), // Padding horizontal untuk konten ListTile
-      child: ListTile(
-        contentPadding: EdgeInsets.zero, // Hapus padding internal ListTile
-        title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text('$category - $price'), // Menampilkan kategori layanan
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
+  Widget buildLayananCard(Map<String, dynamic> layananItem, int index) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      elevation: 4,
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InkWell(
-              onTap: () {
-                // Tambahkan logika untuk mengedit layanan
-              },
-              child: Container(
-                padding: EdgeInsets.all(8.0), // Ubah sesuai kebutuhan Anda
-                decoration: BoxDecoration(
-                  color: Color(0xFF0E1446), // Warna biru tua
-                  borderRadius: BorderRadius.circular(10.0), // Ubah sesuai kebutuhan Anda
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  layananItem['title'],
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF0E1446),
+                  ),
                 ),
-                child: Icon(
-                  Icons.edit,
-                  color: Colors.white, // Warna ikon putih
-                  size: 20, // Ukuran ikon edit
+                IconButton(
+                  icon: Icon(Icons.delete, color: Colors.red),
+                  onPressed: () => _hapusLayanan(index),
                 ),
-              ),
+              ],
             ),
-            IconButton(
-              icon: Icon(Icons.delete, color: Colors.grey),
-              onPressed: () {
-                // Tambahkan logika untuk menghapus layanan
-              },
-            ),
+            const SizedBox(height: 12),
+            ...layananItem['jenis'].map<Widget>((j) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        j['nama'],
+                        style: GoogleFonts.poppins(fontSize: 14),
+                      ),
+                    ),
+                    Text(
+                      'Rp ${formatRupiah(j['harga'])}',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFEEF2FF),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        layananItem['satuan'],
+                        style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          color: const Color(0xFF0E1446),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            }).toList(),
           ],
         ),
       ),
     );
+  }
+
+  String formatRupiah(int harga) {
+    return harga.toString().replaceAllMapped(
+          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+          (Match m) => '${m[1]}.',
+        );
   }
 }

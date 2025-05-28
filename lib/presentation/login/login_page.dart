@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laundryku/presentation/home/home_screen.dart';
-import 'package:laundryku/presentation/registration/registration_page.dart';
+import 'package:laundream/presentation/home/home_screen.dart';
+import 'package:laundream/presentation/registration/registration_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
