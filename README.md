@@ -1,16 +1,25 @@
-# laundryku
+# 🧺 Laundream
 
-A new Flutter project.
+**Laundream** adalah aplikasi manajemen laundry berbasis Flutter yang membantu pemilik usaha dalam mengelola layanan, pelanggan, pesanan, transaksi, dan laporan keuangan secara efisien.
 
-## Getting Started
+## 🚀 Fitur Aplikasi
 
-This project is a starting point for a Flutter application.
+- ✅ **Login & Registrasi**  
+  Otentikasi pengguna dengan level pelanggan dan admin.
 
-A few resources to get you started if this is your first Flutter project:
+- 👤 **Manajemen Pelanggan**  
+  Tambah, lihat, edit, dan hapus data pelanggan.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 📦 **Pesanan Laundry**  
+  Buat dan kelola pesanan laundry dengan layanan, berat, dan status.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 💬 **Notifikasi & Promo**  
+  Fitur promo dan notifikasi kepada pelanggan.
+
+- 💰 **Laporan Keuangan**  
+  Tambah/potong kas, lihat total saldo, serta laporan pesanan dan pendapatan.
+
+- ⚙️ **Manajemen Layanan**  
+  Kelola jenis layanan (kiloan, satuan, dll) beserta harga.
+
+---
